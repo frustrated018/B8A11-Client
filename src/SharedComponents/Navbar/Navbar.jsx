@@ -17,7 +17,34 @@ const Navbar = () => {
       >
         Home
       </NavLink>
-
+      <NavLink
+        to="/rooms"
+        className={({ isActive, isPending }) =>
+          `px-4 py-2 rounded-md text-center font-semibold ${
+            isPending
+              ? "bg-primary text-neutral cursor-not-allowed"
+              : isActive
+              ? "bg-primary text-base-100"
+              : "bg-transparent text-[#0E0801] hover:bg-secondary hover:text-neutral"
+          }`
+        }
+      >
+        Rooms
+      </NavLink>
+      <NavLink
+        to="/mybookings"
+        className={({ isActive, isPending }) =>
+          `px-4 py-2 rounded-md text-center font-semibold ${
+            isPending
+              ? "bg-primary text-neutral cursor-not-allowed"
+              : isActive
+              ? "bg-primary text-base-100"
+              : "bg-transparent text-[#0E0801] hover:bg-secondary hover:text-neutral"
+          }`
+        }
+      >
+        My Bookings
+      </NavLink>
       <NavLink
         to="/login"
         className={({ isActive, isPending }) =>
@@ -32,39 +59,25 @@ const Navbar = () => {
       >
         Loign
       </NavLink>
-      <NavLink
-        to="/cart"
-        className={({ isActive, isPending }) =>
-          `px-4 py-2 rounded-md text-center font-semibold ${
-            isPending
-              ? "bg-primary text-neutral cursor-not-allowed"
-              : isActive
-              ? "bg-primary text-base-100"
-              : "bg-transparent text-[#0E0801] hover:bg-secondary hover:text-neutral"
-          }`
-        }
-      >
-        Cart
-      </NavLink>
     </>
   );
   return (
     <>
-      <div className="navbar bg-base-100">
-        <div className="navbar-start">
+      <div className="navbar bg-base-100 flex flex-col justify-between md:flex-row">
+        {/* Name & logo */}
+        <div>
           <a className="btn btn-ghost normal-case text-xl">Yachiyo</a>
         </div>
+        {/* Nav Links */}
+        <div className="space-x-1">{list}</div>
 
-        <div className=" navbar-center space-x-1">{list}</div>
-
-        <div className="navbar-end">
-          {/* cart and avater */}
+        {/* cart and avater */}
+        <div>
           <div className="flex-none">
             <div className="dropdown dropdown-end">
               <label className="swap swap-rotate">
                 {/* this hidden checkbox controls the state */}
                 <input type="checkbox" />
-
                 {/* sun icon */}
                 <svg
                   className="swap-on fill-current w-10 h-10"
@@ -95,13 +108,7 @@ const Navbar = () => {
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <a className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
-                </li>
-                <li>
-                  <a>Settings</a>
+                  <p>Name</p>
                 </li>
                 <li>
                   <a>Logout</a>
