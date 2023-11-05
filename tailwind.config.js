@@ -26,18 +26,18 @@ export default {
     themes: [
       {
         myLight: {
-          "primary": "#988161",
-          "secondary": "#d1f8af",
-          "accent": "#67cb10",
-          "neutral": "#262a22",
-          "base-100": "#edefeb",
+          "primary": "#ba9c73",
+          "secondary": "#8ef732",
+          "accent": "#40eb19",
+          "neutral": "#262626",
+          "base-100": "#e6e6e6",
         },
         myDark: {
-          "primary": "#9e8767",
-          "secondary": "#295007",
-          "accent": "#8bef34",
-          "neutral": "#262a22",
-          "base-100": "#121410",
+          "primary": "#8c6e45",
+          "secondary": "#65ce09",
+          "accent": "#3ae614",
+          "neutral": "#262626",
+          "base-100": "#1a1a1a",
         },
       },
     ],
