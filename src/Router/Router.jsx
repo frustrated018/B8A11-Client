@@ -1,21 +1,18 @@
 import { createBrowserRouter } from "react-router-dom";
+import MainLayout from "../Layout/MainLayout";
+import Home from "../Pages/Home/Home";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <div>
-        <div className=" text-center text-5xl text-primary mt-40">
-          Initial Setup
-        </div>
-        <div className=" text-center text-5xl text-char mt-40">
-          Different color
-        </div>
-        <div className=" text-center text-5xl text-neutral mt-40">
-          Different color 2
-        </div>
-      </div>
-    ),
+    element: <MainLayout></MainLayout>,
+    children: [
+        {
+            path: "/",
+            element: <Home></Home>,
+        },
+        
+    ]
   },
 ]);
 
