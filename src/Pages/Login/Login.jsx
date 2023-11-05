@@ -73,6 +73,16 @@ const Login = () => {
                   </div>
                 </button>
               </div>
+              {/* Redirecting */}
+              <p className="text-right text-base text-neutral mt-3">
+                Don&apos;t have an Account? {"  "}
+                <a
+                  className="hover:underline hover:text-secondary"
+                  href="/signup"
+                >
+                  Sign Up
+                </a>
+              </p>
             </div>
           </div>
         </div>
