@@ -1,0 +1,27 @@
+Stay Inn Light Mode Color Pallet:
+
+Colors in HEX:
+
+--text: #080b1c;
+--background: #eff1fa;
+--primary: #4254b8;
+--secondary: #bce9b4;
+--accent: #2441e5;
+
+
+Colors in RGB:
+
+--text: rgb(8, 11, 28);
+--background: rgb(239, 241, 250);
+--primary: rgb(66, 84, 184);
+--secondary: rgb(188, 233, 180);
+--accent: rgb(36, 65, 229);
+
+
+Colors in HSL:
+
+--text: hsl(231, 56%, 7%);
+--background: hsl(229, 52%, 96%);
+--primary: hsl(231, 47%, 49%);
+--secondary: hsl(111, 55%, 81%);
+--accent: hsl(231, 79%, 52%);

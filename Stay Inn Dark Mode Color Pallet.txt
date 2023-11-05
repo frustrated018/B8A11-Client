@@ -1,0 +1,25 @@
+Stay Inn Dark Mode Color Pallet:
+
+HEX:
+
+--text: #e3e6f7;
+--background: #050710;
+--primary: #4759bd;
+--secondary: #1e4b16;
+--accent: #1a37db;
+
+RGB:
+
+--text: rgb(227, 230, 247);
+--background: rgb(5, 7, 16);
+--primary: rgb(71, 89, 189);
+--secondary: rgb(30, 75, 22);
+--accent: rgb(26, 55, 219);
+
+HSL:
+
+--text: hsl(231, 56%, 93%);
+--background: hsl(229, 52%, 4%);
+--primary: hsl(231, 47%, 51%);
+--secondary: hsl(111, 55%, 19%);
+--accent: hsl(231, 79%, 48%);
