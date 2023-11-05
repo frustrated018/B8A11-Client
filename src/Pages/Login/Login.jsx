@@ -12,7 +12,7 @@ const Login = () => {
             <div className="hidden md:block w-1/2">
               {/* Image */}
               <img
-                src="https://source.unsplash.com/random/?ryokan"
+                src="https://source.unsplash.com/random/500x500/?ryokan"
                 alt="Random Ryokan Image"
                 className="w-full h-full object-cover"
               />
