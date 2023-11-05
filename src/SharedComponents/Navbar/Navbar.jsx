@@ -3,92 +3,60 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const list = (
     <>
-      <li>
-        <NavLink
-          to="/"
-          className={({ isActive, isPending }) =>
-            `px-4 py-2 rounded-md text-center font-semibold ${
-              isPending
-                ? "bg-base-100 text-neutral cursor-not-allowed"
-                : isActive
-                ? "bg-primary text-base-100"
-                : "bg-transparent text-[#0E0801] hover:bg-secondary hover:text-neutral"
-            }`
-          }
-        >
-          Home
-        </NavLink>
-      </li>
-      <li className="ml-2">
-        <NavLink
-          to="/another"
-          className={({ isActive, isPending }) =>
-            `px-4 py-2 rounded-md text-center font-semibold ${
-              isPending
-                ? "bg-base-100 text-neutral cursor-not-allowed"
-                : isActive
-                ? "bg-primary text-base-100"
-                : "bg-transparent text-[#0E0801] hover:bg-secondary hover:text-neutral"
-            }`
-          }
-        >
-          Another page
-        </NavLink>
-      </li>
-      <li className="ml-2">
-        <NavLink
-          to="/cart"
-          className={({ isActive, isPending }) =>
-            `px-4 py-2 rounded-md text-center font-semibold ${
-              isPending
-                ? "bg-base-100 text-neutral cursor-not-allowed"
-                : isActive
-                ? "bg-primary text-base-100"
-                : "bg-transparent text-[#0E0801] hover:bg-secondary hover:text-neutral"
-            }`
-          }
-        >
-          Cart
-        </NavLink>
-      </li>
+      <NavLink
+        to="/"
+        className={({ isActive, isPending }) =>
+          `px-4 py-2 rounded-md text-center font-semibold ${
+            isPending
+              ? "bg-primary text-neutral cursor-not-allowed"
+              : isActive
+              ? "bg-primary text-base-100"
+              : "bg-transparent text-[#0E0801] hover:bg-secondary hover:text-neutral"
+          }`
+        }
+      >
+        Home
+      </NavLink>
+
+      <NavLink
+        to="/login"
+        className={({ isActive, isPending }) =>
+          `px-4 py-2 rounded-md text-center font-semibold ${
+            isPending
+              ? "bg-primary text-neutral cursor-not-allowed"
+              : isActive
+              ? "bg-primary text-base-100"
+              : "bg-transparent text-[#0E0801] hover:bg-secondary hover:text-neutral"
+          }`
+        }
+      >
+        Loign
+      </NavLink>
+      <NavLink
+        to="/cart"
+        className={({ isActive, isPending }) =>
+          `px-4 py-2 rounded-md text-center font-semibold ${
+            isPending
+              ? "bg-primary text-neutral cursor-not-allowed"
+              : isActive
+              ? "bg-primary text-base-100"
+              : "bg-transparent text-[#0E0801] hover:bg-secondary hover:text-neutral"
+          }`
+        }
+      >
+        Cart
+      </NavLink>
     </>
   );
   return (
     <>
       <div className="navbar bg-base-100">
         <div className="navbar-start">
-          <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost lg:hidden">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
-              </svg>
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              {/* List items */}
-            </ul>
-          </div>
           <a className="btn btn-ghost normal-case text-xl">Yachiyo</a>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            {/* List items go here */}
-            {list}
-          </ul>
-        </div>
+
+        <div className=" navbar-center space-x-1">{list}</div>
+
         <div className="navbar-end">
           {/* cart and avater */}
           <div className="flex-none">
