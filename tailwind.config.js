@@ -27,15 +27,15 @@ export default {
       {
         myLight: {
           "primary": "#ba9c73",
-          "secondary": "#8ef732",
-          "accent": "#40eb19",
+          "secondary": "#81bf4a",
+          "accent": "#2fff00",
           "neutral": "#262626",
           "base-100": "#e6e6e6",
         },
         myDark: {
           "primary": "#8c6e45",
-          "secondary": "#65ce09",
-          "accent": "#3ae614",
+          "secondary": "#76b540",
+          "accent": "#2fff00",
           "neutral": "#262626",
           "base-100": "#1a1a1a",
         },
