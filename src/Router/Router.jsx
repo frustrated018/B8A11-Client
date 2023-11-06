@@ -6,6 +6,7 @@ import SignUp from "../Pages/SignUp/SignUp";
 import Rooms from "../Pages/Rooms/Rooms";
 import MyBookings from "../Pages/MyBookings/MyBookings";
 import PrivateRoute from "./PrivateRoute";
+import axios from "axios";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       {
         path: "/rooms",
         element: <Rooms></Rooms>,
+        loader: () => axios.get("http://localhost:5000/rooms").then(res => res.data),
       },
       {
         path: "/mybookings",

@@ -1,12 +1,12 @@
 [
   {
-    "location": "Location 1",
+    "location": "Gora Kadan, Hakone",
     "roomNumber": "104",
     "description": "Modern and spacious room with a city view.",
     "roomType": "Executive",
     "pricePerNight": 250,
     "featured": true,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&1",
     "seats": 2,
     "offer": 20,
     "reviews": [
@@ -19,13 +19,13 @@
     ]
   },
   {
-    "location": "Location 1",
+    "location": "Gora Kadan, Hakone",
     "roomNumber": "105",
     "description": "Luxurious suite with a private Jacuzzi and a sea view.",
     "roomType": "Suite",
     "pricePerNight": 350,
     "featured": false,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&2",
     "seats": 2,
     "offer": 25,
     "reviews": [
@@ -38,13 +38,13 @@
     ]
   },
   {
-    "location": "Location 1",
+    "location": "Gora Kadan, Hakone",
     "roomNumber": "106",
     "description": "Cozy room with a fireplace, perfect for a romantic getaway.",
     "roomType": "Romantic",
     "pricePerNight": 180,
     "featured": true,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&3",
     "seats": 2,
     "offer": 15,
     "reviews": [
@@ -57,13 +57,13 @@
     ]
   },
   {
-    "location": "Location 1",
+    "location": "Gora Kadan, Hakone",
     "roomNumber": "107",
     "description": "Elegant penthouse with panoramic city views and a rooftop terrace.",
     "roomType": "Penthouse",
     "pricePerNight": 450,
     "featured": true,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&4",
     "seats": 2,
     "offer": 40,
     "reviews": [
@@ -76,13 +76,13 @@
     ]
   },
   {
-    "location": "Location 2",
+    "location": "Hoshinoya Kyoto, Kyoto",
     "roomNumber": "206",
     "description": "Ski-in, ski-out chalet with mountain access and a hot tub.",
     "roomType": "Ski Chalet",
     "pricePerNight": 300,
     "featured": true,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&5",
     "seats": 6,
     "offer": 28,
     "reviews": [
@@ -95,13 +95,13 @@
     ]
   },
   {
-    "location": "Location 2",
+    "location": "Hoshinoya Kyoto, Kyoto",
     "roomNumber": "203",
     "description": "Seaside villa with a private beach and stunning ocean views.",
     "roomType": "Seaside Villa",
     "pricePerNight": 400,
     "featured": true,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&6",
     "seats": 4,
     "offer": 35,
     "reviews": [
@@ -114,13 +114,13 @@
     ]
   },
   {
-    "location": "Location 2",
+    "location": "Hoshinoya Kyoto, Kyoto",
     "roomNumber": "204",
     "description": "Historic suite with antique decor and views of the old town.",
     "roomType": "Historic Suite",
     "pricePerNight": 280,
     "featured": false,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&7",
     "seats": 2,
     "offer": 25,
     "reviews": [
@@ -133,13 +133,13 @@
     ]
   },
   {
-    "location": "Location 2",
+    "location": "Hoshinoya Kyoto, Kyoto",
     "roomNumber": "205",
     "description": "Riverside cabin with a cozy fireplace and fishing access.",
     "roomType": "Riverside Cabin",
     "pricePerNight": 220,
     "featured": true,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&8",
     "seats": 2,
     "offer": 20,
     "reviews": [
@@ -152,13 +152,13 @@
     ]
   },
   {
-    "location": "Location 3",
+    "location": "Nishimuraya Honkan, Kinosaki Onsen",
     "roomNumber": "304",
     "description": "Luxury apartment with a private balcony and a view of the river.",
     "roomType": "River View Apartment",
     "pricePerNight": 320,
     "featured": true,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&9",
     "seats": 2,
     "offer": 28,
     "reviews": [
@@ -171,13 +171,13 @@
     ]
   },
   {
-    "location": "Location 3",
+    "location": "Nishimuraya Honkan, Kinosaki Onsen",
     "roomNumber": "301",
     "description": "Urban loft with a contemporary design and city skyline views.",
     "roomType": "Urban Loft",
     "pricePerNight": 260,
     "featured": true,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&10",
     "seats": 2,
     "offer": 22,
     "reviews": [
@@ -190,13 +190,13 @@
     ]
   },
   {
-    "location": "Location 3",
+    "location": "Nishimuraya Honkan, Kinosaki Onsen",
     "roomNumber": "302",
     "description": "Artistic room with a private art gallery and creative atmosphere.",
     "roomType": "Artistic Retreat",
     "pricePerNight": 290,
     "featured": false,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&11",
     "seats": 2,
     "offer": 25,
     "reviews": [
@@ -209,13 +209,13 @@
     ]
   },
   {
-    "location": "Location 3",
+    "location": "Nishimuraya Honkan, Kinosaki Onsen",
     "roomNumber": "303",
     "description": "Tech-savvy room with smart amenities and a high-tech workspace.",
     "roomType": "Tech-Savvy Suite",
     "pricePerNight": 270,
     "featured": true,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&12",
     "seats": 2,
     "offer": 24,
     "reviews": [
@@ -228,13 +228,13 @@
     ]
   },
   {
-    "location": "Location 4",
+    "location": "Tawaraya Ryokan, Kyoto",
     "roomNumber": "401",
     "description": "Charming cottage with a garden, ideal for a peaceful escape.",
     "roomType": "Cottage Getaway",
     "pricePerNight": 210,
     "featured": false,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&13",
     "seats": 2,
     "offer": 18,
     "reviews": [
@@ -247,13 +247,13 @@
     ]
   },
   {
-    "location": "Location 4",
+    "location": "Tawaraya Ryokan, Kyoto",
     "roomNumber": "402",
     "description": "Coastal bungalow with direct beach access and ocean sunsets.",
     "roomType": "Coastal Bungalow",
     "pricePerNight": 320,
     "featured": true,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&14",
     "seats": 4,
     "offer": 28,
     "reviews": [
@@ -266,13 +266,13 @@
     ]
   },
   {
-    "location": "Location 4",
+    "location": "Tawaraya Ryokan, Kyoto",
     "roomNumber": "404",
     "description": "Rustic log cabin with a private forest and hiking trails.",
     "roomType": "Log Cabin Retreat",
     "pricePerNight": 280,
     "featured": true,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&15",
     "seats": 4,
     "offer": 25,
     "reviews": [
@@ -285,13 +285,13 @@
     ]
   },
   {
-    "location": "Location 4",
+    "location": "Tawaraya Ryokan, Kyoto",
     "roomNumber": "403",
     "description": "Historic mansion with elegant decor and a touch of grandeur.",
     "roomType": "Historic Mansion",
     "pricePerNight": 350,
     "featured": true,
-    "img": "https://source.unsplash.com/random/500x500/?hotel,room",
+    "img": "https://source.unsplash.com/random/500x500/?japan,hotel,ryokan&16",
     "seats": 2,
     "offer": 30,
     "reviews": [
