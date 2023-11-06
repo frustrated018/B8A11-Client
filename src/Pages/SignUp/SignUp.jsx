@@ -2,6 +2,12 @@ import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
+// ******** TODO: I want to show the toast after redirecting to the page the user was trying to originally go to {need to figure out how to do that} *******
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
@@ -15,10 +21,55 @@ const SignUp = () => {
     console.log(name, email, password);
 
     createUser(email, password)
-    .then((result) => {
-      const user = result.user;
-      console.log(user);
-    });
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        if (user) {
+          // Updating users diplayName
+
+          updateProfile(user, { displayName: name })
+            .then(() => {
+              // Displaying success message
+              toast.success(`Hi ${user.displayName}! Welcome to our site!!`, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+              form.reset();
+            })
+            .catch((error) => {
+              console.log(error);
+              toast.error(`${error}`, {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+              });
+            });
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(`${error}`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
   };
 
   return (
@@ -134,6 +185,7 @@ const SignUp = () => {
           </div>
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </>
   );
 };
