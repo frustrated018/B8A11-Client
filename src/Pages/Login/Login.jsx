@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -13,13 +15,37 @@ const Login = () => {
     console.log(email, password);
 
     signIn(email, password)
-    .then (result =>{
-      const user = result.user;
-      console.log(user);
-    })
-    .catch(err =>{
-      console.log(err);
-    })
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        if (user) {
+          // Displaying success message
+          toast.success(`Hi ${user.displayName}! Welcome Back!!`, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+          // form.reset();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(`${err}`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      });
   };
   return (
     <>
@@ -113,6 +139,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <ToastContainer></ToastContainer>
     </>
   );
 };

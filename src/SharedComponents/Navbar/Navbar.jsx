@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Navbar = () => {
-  const { logOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
   // handling Logout
   const handleLogOut = () => {
@@ -119,7 +119,7 @@ const Navbar = () => {
                 className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
               >
                 <li>
-                  <p>Name</p>
+                  <p>{user ? user.displayName : "Guest"}</p>
                 </li>
                 <li>
                   <button onClick={handleLogOut}>Logout</button>
