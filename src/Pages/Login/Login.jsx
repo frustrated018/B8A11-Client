@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -142,7 +142,6 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <ToastContainer></ToastContainer>
     </>
   );
 };

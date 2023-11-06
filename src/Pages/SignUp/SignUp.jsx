@@ -1,15 +1,15 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
-// ******** TODO: I want to show the toast after redirecting to the page the user was trying to originally go to {need to figure out how to do that} *******
-
 const SignUp = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
   const { createUser } = useContext(AuthContext);
   // handleing signup
   const handleSignUp = (event) => {
@@ -40,7 +40,7 @@ const SignUp = () => {
                 progress: undefined,
                 theme: "colored",
               });
-              form.reset();
+              navigate(location?.state ? location.state : "/")
             })
             .catch((error) => {
               console.log(error);
@@ -185,7 +185,6 @@ const SignUp = () => {
           </div>
         </div>
       </div>
-      <ToastContainer></ToastContainer>
     </>
   );
 };
