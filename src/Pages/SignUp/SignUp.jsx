@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
   // handleing signup
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -9,7 +12,13 @@ const SignUp = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name,email,password);
+    console.log(name, email, password);
+
+    createUser(email, password)
+    .then((result) => {
+      const user = result.user;
+      console.log(user);
+    });
   };
 
   return (
@@ -31,7 +40,7 @@ const SignUp = () => {
             <div className="w-full md:w-1/2 py-10 px-5 md:px-10">
               <div className="text-center mb-10">
                 <h1 className="font-bold text-4xl text-gray-900">Sign Up!!</h1>
-                <p>Enter your information to register</p>
+                <p>Enter the following information to register</p>
               </div>
               <form onSubmit={handleSignUp}>
                 <div className="flex -mx-3">
@@ -49,6 +58,7 @@ const SignUp = () => {
                         name="name"
                         className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-secondary"
                         placeholder="Jhon Doe"
+                        required
                       />
                     </div>
                   </div>
@@ -68,6 +78,7 @@ const SignUp = () => {
                         name="email"
                         className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-secondary"
                         placeholder="example@email.com"
+                        required
                       />
                     </div>
                   </div>
@@ -87,6 +98,7 @@ const SignUp = () => {
                         name="password"
                         className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-secondary"
                         placeholder="************"
+                        required
                       />
                     </div>
                   </div>
