@@ -1,6 +1,17 @@
 import { FcGoogle } from "react-icons/fc";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
+  // handleing signup
+  const handleSignUp = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name,email,password);
+  };
+
   return (
     <>
       <div className="min-w-screen min-h-screen bg-base-100 flex items-center justify-center px-5 py-5">
@@ -22,7 +33,7 @@ const SignUp = () => {
                 <h1 className="font-bold text-4xl text-gray-900">Sign Up!!</h1>
                 <p>Enter your information to register</p>
               </div>
-              <div>
+              <form onSubmit={handleSignUp}>
                 <div className="flex -mx-3">
                   <div className="w-full px-3 mb-5">
                     <label htmlFor="" className="text-xs font-semibold px-1">
@@ -32,8 +43,10 @@ const SignUp = () => {
                       <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                         <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
                       </div>
+                      {/* input field */}
                       <input
                         type="text"
+                        name="name"
                         className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-secondary"
                         placeholder="Jhon Doe"
                       />
@@ -49,8 +62,10 @@ const SignUp = () => {
                       <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                         <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
                       </div>
+                      {/* input field */}
                       <input
                         type="email"
+                        name="email"
                         className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-secondary"
                         placeholder="example@email.com"
                       />
@@ -66,8 +81,10 @@ const SignUp = () => {
                       <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                         <i className="mdi mdi-lock-outline text-gray-400 text-lg"></i>
                       </div>
+                      {/* input Field */}
                       <input
                         type="password"
+                        name="password"
                         className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-secondary"
                         placeholder="************"
                       />
@@ -77,7 +94,7 @@ const SignUp = () => {
                 <div className="flex -mx-3">
                   <div className="w-full px-3">
                     <button className="block w-full max-w-xs mx-auto bg-secondary hover:bg-accent focus:bg-accent text-white rounded-lg px-3 py-3 font-bold text-[20px]">
-                      Login!!
+                      Sign Up
                     </button>
                   </div>
                 </div>
@@ -90,13 +107,16 @@ const SignUp = () => {
                     <span className="ml-4">Log in with Google</span>
                   </div>
                 </button>
-              </div>
+              </form>
               {/* Redirecting */}
               <p className="text-right text-base text-neutral mt-3">
-                Already have an Account? {"  "}
-                <a className="hover:underline hover:text-secondary" href="/login">
+                Already have an Account?
+                <Link
+                  to={"/login"}
+                  className="hover:underline hover:text-secondary"
+                >
                   Login
-                </a>
+                </Link>
               </p>
             </div>
           </div>
