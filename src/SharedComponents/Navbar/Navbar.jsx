@@ -1,7 +1,9 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -86,6 +88,7 @@ const Navbar = () => {
   );
   return (
     <>
+    <ToastContainer></ToastContainer>
       <div className="navbar bg-base-100 flex flex-col justify-between md:flex-row">
         {/* Name & logo */}
         <div>

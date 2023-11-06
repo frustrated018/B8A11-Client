@@ -3,8 +3,11 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
   const { signIn } = useContext(AuthContext);
   // handleing Login
   const handleSignIn = (event) => {
@@ -22,7 +25,7 @@ const Login = () => {
           // Displaying success message
           toast.success(`Hi ${user.displayName}! Welcome Back!!`, {
             position: "top-center",
-            autoClose: 5000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -30,7 +33,7 @@ const Login = () => {
             progress: undefined,
             theme: "colored",
           });
-          // form.reset();
+          navigate(location?.state ? location.state : "/")
         }
       })
       .catch((err) => {
