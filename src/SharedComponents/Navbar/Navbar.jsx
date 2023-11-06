@@ -4,7 +4,6 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
@@ -128,17 +127,19 @@ const Navbar = () => {
                   <img src="https://i.ibb.co/0VZsNLh/alexander-hipp-i-EEBWg-Y-6l-A-unsplash.jpg" />
                 </div>
               </label>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <p>{user ? user.displayName : "Guest"}</p>
-                </li>
-                <li>
-                  <button onClick={handleLogOut}>Logout</button>
-                </li>
-              </ul>
+              {user && (
+                <ul
+                  tabIndex={0}
+                  className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li>
+                    <p>{user ? user.displayName : "Guest"}</p>
+                  </li>
+                  <li>
+                    <button onClick={handleLogOut}>Logout</button>
+                  </li>
+                </ul>
+              )}
             </div>
           </div>
         </div>
