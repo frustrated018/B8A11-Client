@@ -4,31 +4,40 @@ import { toast } from "react-toastify";
 
 const RoomDetails = () => {
   const room = useLoaderData();
-  const { img, description, roomType, location, pricePerNight, offer, seats } =
-    room;
+  const {
+    img,
+    description,
+    roomType,
+    location,
+    pricePerNight,
+    offer,
+    seats,
+    reviews,
+  } = room;
 
-    // Handling booking
+  console.log(reviews);
 
-    const handleBookNow = () =>{
-        if (seats === 0) {
-            toast.error('Sorry no seats available', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                });
-        }
+  // Handling booking
+
+  const handleBookNow = () => {
+    if (seats === 0) {
+      toast.error("Sorry no seats available", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
     }
-
+  };
 
   return (
     <>
       <div className="flex justify-center items-center lg:py-20 md:py-10 py-5 min-h-screen">
-        <article className="overflow-hidden rounded-lg border border-accent bg-secondary shadow-sm w-[90%] h-[90%]">
+        <article className="overflow-hidden rounded-lg border border-neutral bg-primary shadow-sm w-[90%] h-[90%]">
           <img
             alt="Office"
             src={img}
@@ -37,52 +46,89 @@ const RoomDetails = () => {
 
           <div className="p-4 sm:p-6">
             {/* Longer description */}
-            <div className="flow-root rounded-lg border border-accent py-3 shadow-sm">
-              <dl className="-my-3 divide-y divide-accent text-sm">
+            <div className="flow-root rounded-lg border border-neutral py-3 shadow-sm bg-secondary">
+              <dl className="-my-3 divide-y divide-neutral text-sm">
                 <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-                  <dt className="font-medium text-white">Location</dt>
-                  <dd className="text-neutral sm:col-span-2">{location}</dd>
+                  <dt className="font-semibold text-white text-base">
+                    Location:
+                  </dt>
+                  <dd className="text-neutral sm:col-span-2 text-base">
+                    {location}
+                  </dd>
                 </div>
 
                 <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-                  <dt className="font-medium text-white">Description</dt>
-                  <dd className="text-neutral sm:col-span-2">{description}</dd>
+                  <dt className="font-semibold text-white text-base">
+                    Description:
+                  </dt>
+                  <dd className="text-neutral sm:col-span-2 text-base">
+                    {description}
+                  </dd>
                 </div>
 
                 <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-                  <dt className="font-medium text-white">Room Type</dt>
-                  <dd className="text-neutral sm:col-span-2">{roomType}</dd>
+                  <dt className="font-semibold text-white text-base">
+                    Room Type:
+                  </dt>
+                  <dd className="text-neutral sm:col-span-2 text-base">
+                    {roomType}
+                  </dd>
                 </div>
 
                 <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-                  <dt className="font-medium text-white">Available Seats</dt>
-                  <dd className="text-neutral sm:col-span-2">{seats}</dd>
+                  <dt className="font-semibold text-white text-base">
+                    Rooms Available:
+                  </dt>
+                  <dd className="text-neutral sm:col-span-2 text-base">
+                    {seats}
+                  </dd>
                 </div>
 
                 <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-                  <dt className="font-medium text-white">Price Per Night</dt>
-                  <dd className="text-neutral sm:col-span-2">
+                  <dt className="font-semibold text-white text-base">
+                    Price Per Night:
+                  </dt>
+                  <dd className="text-neutral sm:col-span-2 text-base">
                     ${pricePerNight}
                   </dd>
                 </div>
 
                 <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-                  <dt className="font-medium text-white">Offer</dt>
-                  <dd className="text-neutral sm:col-span-2">{offer}%</dd>
+                  <dt className="font-semibold text-white text-base">Offer:</dt>
+                  <dd className="text-neutral sm:col-span-2 text-base">
+                    {offer}% off
+                  </dd>
+                </div>
+
+                {/* Display Reviews */}
+                <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
+                  <dt className="font-semibold text-white text-base">
+                    Reviews:
+                  </dt>
+                  <dd className="text-neutral sm:col-span-2 text-base">
+                    {reviews.map((review, index) => (
+                      <div key={index}>
+                        <p>Username: {review.username}</p>
+                        <p>Rating: {review.rating}/5</p>
+                        <p>Comment: {review.comment}</p>
+                        <p>Timestamp: {review.timestamp}</p>
+                      </div>
+                    ))}
+                  </dd>
                 </div>
               </dl>
             </div>
 
             <button
-                onClick={handleBookNow}
-              className="group relative inline-flex items-center overflow-hidden rounded bg-[#007b7d] px-8 py-3 text-white focus:outline-none focus:ring active:bg-[#00a8a9] mt-4"
+              onClick={handleBookNow}
+              className="group relative inline-flex items-center overflow-hidden rounded bg-accent px-8 py-3 text-white focus:outline-none focus:ring active:bg-[#00a8a9] mt-4"
               href="/download"
             >
               <span className="absolute -end-full transition-all group-hover:end-4">
                 <BsCalendarCheck></BsCalendarCheck>
               </span>
 
-              <span className="text-sm font-medium transition-all group-hover:me-4">
+              <span className="text-xl font-semibold transition-all group-hover:me-4">
                 Book Now
               </span>
             </button>
