@@ -3,15 +3,15 @@ const RoomCard = ({ room }) => {
 
   return (
     <>
-      <a href="#" className="group relative block bg-black">
+      <div className="group relative block bg-black rounded-xl">
         <img
-          alt="Developer"
+          alt="hotel scenery"
           src={img}
-          className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50"
+          className="absolute inset-0 h-full w-full object-cover opacity-75 transition-opacity group-hover:opacity-50 rounded-xl"
         />
 
         <div className="relative p-4 sm:p-6 lg:p-8">
-          <p className="text-sm font-medium uppercase tracking-widest text-pink-500">
+          <p className="text-sm font-medium uppercase tracking-widest text-accent">
             {roomType}
           </p>
 
@@ -23,7 +23,7 @@ const RoomCard = ({ room }) => {
             </div>
           </div>
         </div>
-      </a>
+      </div>
     </>
   );
 };
