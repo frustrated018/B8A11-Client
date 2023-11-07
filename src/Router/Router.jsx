@@ -8,6 +8,7 @@ import MyBookings from "../Pages/MyBookings/MyBookings";
 import PrivateRoute from "./PrivateRoute";
 import axios from "axios";
 import RoomDetails from "../Pages/RoomDetails/RoomDetails";
+import Checkout from "../Pages/Checkout/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -41,11 +42,19 @@ const router = createBrowserRouter([
         element: <SignUp></SignUp>,
       },
       {
+        path: "/rooms/checkout/:id",
+        element:<Checkout></Checkout>,
+        loader: ({ params }) =>
+        fetch(
+          `http://localhost:5000/rooms/checkout/${params.id}`
+        ),
+      },
+      {
         path: "/rooms/:id",
         element: <RoomDetails></RoomDetails>,
         loader: ({ params }) =>
           fetch(
-            `http://localhost:5000/rooms/${params.id}`
+            `http://localhost:5000/rooms/details/${params.id}`
           ),
       },
     ],

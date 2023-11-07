@@ -1,10 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { BsCalendarCheck } from "react-icons/bs";
 import { toast } from "react-toastify";
 
 const RoomDetails = () => {
   const room = useLoaderData();
   const {
+    _id,
     img,
     description,
     roomType,
@@ -15,9 +16,8 @@ const RoomDetails = () => {
     reviews,
   } = room;
 
-  console.log(reviews);
-
   // Handling booking
+  const navigate = useNavigate();
 
   const handleBookNow = () => {
     if (seats === 0) {
@@ -31,6 +31,10 @@ const RoomDetails = () => {
         progress: undefined,
         theme: "colored",
       });
+    }
+    else{
+        // go to checkout page
+        navigate(`/rooms/checkout/${_id}`)
     }
   };
 
