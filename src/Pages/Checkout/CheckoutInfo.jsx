@@ -1,51 +1,14 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
-import { BsCalendarCheck } from "react-icons/bs";
-import { toast } from "react-toastify";
-
-const RoomDetails = () => {
-  const room = useLoaderData();
-  const {
-    _id,
-    img,
-    description,
-    roomType,
-    location,
-    pricePerNight,
-    offer,
-    seats,
-    reviews,
-  } = room;
-
-  // Handling booking
-  const navigate = useNavigate();
-
-  const handleBookNow = () => {
-    if (seats === 0) {
-      toast.error("Sorry no seats available", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }
-    else{
-        // go to checkout page
-        navigate(`/rooms/checkout/${_id}`)
-    }
-  };
-
+const CheckoutInfo = ({ room }) => {
+  const { img, description, roomType, location, pricePerNight, offer, seats } =
+    room;
   return (
     <>
-      <div className="flex justify-center items-center lg:py-20 md:py-10 py-5">
-        <article className="overflow-hidden rounded-lg border border-neutral bg-primary shadow-sm w-[90%] h-[90%]">
+      <div className="flex justify-center items-center py-5">
+        <article className="overflow-hidden rounded-lg border border-neutral bg-primary shadow-sm">
           <img
             alt="Office"
             src={img}
-            className=" h-[350px] w-full object-cover"
+            className=" h-[200px] w-full object-cover"
           />
 
           <div className="p-4 sm:p-6">
@@ -103,39 +66,8 @@ const RoomDetails = () => {
                     {offer}% off
                   </dd>
                 </div>
-
-                {/* Display Reviews */}
-                <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
-                  <dt className="font-semibold text-white text-base">
-                    Reviews:
-                  </dt>
-                  <dd className="text-neutral sm:col-span-2 text-base">
-                    {reviews.map((review, index) => (
-                      <div key={index}>
-                        <p>Username: {review.username}</p>
-                        <p>Rating: {review.rating}/5</p>
-                        <p>Comment: {review.comment}</p>
-                        <p>Timestamp: {review.timestamp}</p>
-                      </div>
-                    ))}
-                  </dd>
-                </div>
               </dl>
             </div>
-
-            <button
-              onClick={handleBookNow}
-              className="group relative inline-flex items-center overflow-hidden rounded bg-accent px-8 py-3 text-white focus:outline-none focus:ring active:bg-[#00a8a9] mt-4"
-              href="/download"
-            >
-              <span className="absolute -end-full transition-all group-hover:end-4">
-                <BsCalendarCheck></BsCalendarCheck>
-              </span>
-
-              <span className="text-xl font-semibold transition-all group-hover:me-4">
-                Book Now
-              </span>
-            </button>
           </div>
         </article>
       </div>
@@ -143,4 +75,4 @@ const RoomDetails = () => {
   );
 };
 
-export default RoomDetails;
+export default CheckoutInfo;
