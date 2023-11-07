@@ -7,6 +7,7 @@ import Rooms from "../Pages/Rooms/Rooms";
 import MyBookings from "../Pages/MyBookings/MyBookings";
 import PrivateRoute from "./PrivateRoute";
 import axios from "axios";
+import RoomDetails from "../Pages/RoomDetails/RoomDetails";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,8 @@ const router = createBrowserRouter([
       {
         path: "/rooms",
         element: <Rooms></Rooms>,
-        loader: () => axios.get("http://localhost:5000/rooms").then(res => res.data),
+        loader: () =>
+          axios.get("http://localhost:5000/rooms").then((res) => res.data),
       },
       {
         path: "/mybookings",
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/rooms/:id",
+        element: <RoomDetails></RoomDetails>,
+        loader: ({ params }) =>
+          fetch(
+            `http://localhost:5000/rooms/${params.id}`
+          ),
       },
     ],
   },
