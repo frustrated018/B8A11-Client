@@ -1,14 +1,39 @@
 import { useLoaderData } from "react-router-dom";
-import { BsCalendarCheck } from "react-icons/bs"
+import { BsCalendarCheck } from "react-icons/bs";
+import { toast } from "react-toastify";
 
 const RoomDetails = () => {
   const room = useLoaderData();
-  const { img, description, roomType, location, pricePerNight, offer } = room;
+  const { img, description, roomType, location, pricePerNight, offer, seats } =
+    room;
+
+    // Handling booking
+
+    const handleBookNow = () =>{
+        if (seats === 0) {
+            toast.error('Sorry no seats available', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                });
+        }
+    }
+
+
   return (
     <>
       <div className="flex justify-center items-center lg:py-20 md:py-10 py-5 min-h-screen">
         <article className="overflow-hidden rounded-lg border border-accent bg-secondary shadow-sm w-[90%] h-[90%]">
-          <img alt="Office" src={img} className=" h-[350px] w-full object-cover" />
+          <img
+            alt="Office"
+            src={img}
+            className=" h-[350px] w-full object-cover"
+          />
 
           <div className="p-4 sm:p-6">
             {/* Longer description */}
@@ -30,21 +55,26 @@ const RoomDetails = () => {
                 </div>
 
                 <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
+                  <dt className="font-medium text-white">Available Seats</dt>
+                  <dd className="text-neutral sm:col-span-2">{seats}</dd>
+                </div>
+
+                <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-medium text-white">Price Per Night</dt>
-                  <dd className="text-neutral sm:col-span-2">${pricePerNight}</dd>
+                  <dd className="text-neutral sm:col-span-2">
+                    ${pricePerNight}
+                  </dd>
                 </div>
 
                 <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-medium text-white">Offer</dt>
-                  <dd className="text-neutral sm:col-span-2">
-                    {offer}%
-                  </dd>
+                  <dd className="text-neutral sm:col-span-2">{offer}%</dd>
                 </div>
               </dl>
             </div>
 
             <button
-            //   onClick={handleAddToCart}
+                onClick={handleBookNow}
               className="group relative inline-flex items-center overflow-hidden rounded bg-[#007b7d] px-8 py-3 text-white focus:outline-none focus:ring active:bg-[#00a8a9] mt-4"
               href="/download"
             >
