@@ -18,44 +18,67 @@ const MyBookings = () => {
   }, [user]);
 
   //Deleting Bookings
-  const handleDelete = (_id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#2FFF00",
-      cancelButtonColor: "#d33",
-      cancelButtonText: "No, Don't!",
-      confirmButtonText: "Yes, Cancel!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`http://localhost:5000/bookings/${_id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            if (data.deletedCount > 0) {
-              toast.success("Your booking has been Cancelled", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-              });
-              const remaining = bookings.filter(
-                (x) => x._id !== _id // used x insted of booking because we already mapped bookings once
-              );
+  const handleDelete = (_id, bookedDate) => {
+    // Calculation for how many days before they can cancel
+    const currentDate = new Date();
+    const bookingDate = new Date(bookedDate);
+    const timeDifference = bookingDate - currentDate;
+    const differenceInDays = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
-              setBookings(remaining);
-            }
-          });
-      }
-    });
+    if (differenceInDays >= 1) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#2FFF00",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "No, Don't!",
+        confirmButtonText: "Yes, Cancel!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          fetch(`http://localhost:5000/bookings/${_id}`, {
+            method: "DELETE",
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              if (data.deletedCount > 0) {
+                toast.success("Your booking has been Cancelled", {
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                  theme: "colored",
+                });
+                const remaining = bookings.filter(
+                  (x) => x._id !== _id // used x insted of booking because we already mapped bookings once
+                );
+
+                setBookings(remaining);
+              }
+            });
+        }
+      });
+    } else {
+      // Show a message that the booking cannot be canceled
+      toast.error(
+        "This booking cannot be canceled as it's within 1 day of the booked date.",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        }
+      );
+    }
   };
 
   // Updating booking
@@ -180,7 +203,7 @@ const MyBookings = () => {
                       {/* delete button */}
                       <button
                         className="text-white transition hover:text-red-600"
-                        onClick={() => handleDelete(booking._id)}
+                        onClick={() => handleDelete(booking._id, booking.date)}
                       >
                         <TbCalendarX size={26}></TbCalendarX>
                       </button>
