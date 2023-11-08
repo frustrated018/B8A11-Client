@@ -6,7 +6,7 @@ const RoomCard = ({ room }) => {
   return (
     <>
       <Link to={`/rooms/details/${_id}`}>
-        <div className="group relative block bg-black rounded-xl">
+        <div className="group relative block bg-black rounded-xl h-[500px]">
           <img
             alt="hotel scenery"
             src={img}
