@@ -1,9 +1,10 @@
 import { useLoaderData } from "react-router-dom";
 import RoomCard from "./RoomCard";
+import { useState } from "react";
 
 const Rooms = () => {
   const rooms = useLoaderData();
-  console.log(rooms);
+  const [asc, setAsc] = useState(true);
   return (
     <>
       <h5 className=" text-center text-2xl md:text-4xl text-accent mt-5">
@@ -14,7 +15,9 @@ const Rooms = () => {
         location
       </h5>
       <div className="flex flex-col md:flex-row justify-between items-center px-5 lg:px-20 gap-5 mt-6">
-        <button className="btn btn-accent">Sort by Price</button>
+        <button className="btn btn-accent" onClick={() => setAsc(!asc)}>
+          {asc ? 'Price: High to Low' : 'Price: Low to High'}
+          </button>
         <div className="flex gap-2">
           <input type="text" name="search" className="px-3 py-3 rounded-lg" />
           <button className="btn btn-primary">Search</button>
