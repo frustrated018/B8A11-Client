@@ -9,11 +9,13 @@ import PrivateRoute from "./PrivateRoute";
 import axios from "axios";
 import RoomDetails from "../Pages/RoomDetails/RoomDetails";
 import Checkout from "../Pages/Checkout/Checkout";
+import Error from "../Pages/Error/Error";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement:<Error></Error>,
     children: [
       {
         path: "/",
