@@ -15,7 +15,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement:<Error></Error>,
+    errorElement: <Error></Error>,
     children: [
       {
         path: "/",
@@ -45,19 +45,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/rooms/checkout/:id",
-        element:<Checkout></Checkout>,
+        element: <Checkout></Checkout>,
         loader: ({ params }) =>
-        fetch(
-          `http://localhost:5000/rooms/checkout/${params.id}`
-        ),
+          fetch(`http://localhost:5000/rooms/checkout/${params.id}`),
       },
       {
         path: "/rooms/details/:id",
-        element: <RoomDetails></RoomDetails>,
+        element: (
+          <PrivateRoute>
+            <RoomDetails></RoomDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
-          fetch(
-            `http://localhost:5000/rooms/details/${params.id}`
-          ),
+          fetch(`http://localhost:5000/rooms/details/${params.id}`),
       },
     ],
   },
