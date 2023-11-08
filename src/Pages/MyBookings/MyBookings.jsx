@@ -19,7 +19,6 @@ const MyBookings = () => {
   }, [user]);
 
   //Deleting Bookings
-
   const handleDelete = (_id) => {
     console.log(_id);
     Swal.fire({
@@ -27,7 +26,7 @@ const MyBookings = () => {
       text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#2FFF00",
       cancelButtonColor: "#d33",
       cancelButtonText: "No, Don't!",
       confirmButtonText: "Yes, Cancel!",
@@ -60,6 +59,10 @@ const MyBookings = () => {
       }
     });
   };
+
+
+  // Updating booking
+
 
   return (
     <>
