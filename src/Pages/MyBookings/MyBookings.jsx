@@ -1,11 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { TbCalendarX, TbCalendarRepeat } from "react-icons/tb";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
 
+  // Fetching data
   useEffect(() => {
     fetch(`http://localhost:5000/bookings?email=${user.email}`)
       .then((res) => res.json())
@@ -14,6 +17,50 @@ const MyBookings = () => {
         console.log(data);
       });
   }, [user]);
+
+  //Deleting Bookings
+
+  const handleDelete = (_id) => {
+    console.log(_id);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "No, Don't!",
+      confirmButtonText: "Yes, Cancel!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/bookings/${_id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              toast.success('Your booking has been Cancelled', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                });
+              const remaining = bookings.filter(
+                (x) => x._id !== _id // used x insted of booking because we already mapped bookings once
+              );
+
+              setBookings(remaining);
+            }
+          });
+      }
+    });
+  };
+
   return (
     <>
       <section>
@@ -72,13 +119,13 @@ const MyBookings = () => {
                           <TbCalendarRepeat size={26}></TbCalendarRepeat>
                         </button>
                       </div>
-                        {/* delete button */}
-                        <button
-                          className="text-white transition hover:text-red-600"
-                          // onClick={() => handleDelete(booking._id)}
-                        >
-                          <TbCalendarX size={26}></TbCalendarX>
-                        </button>
+                      {/* delete button */}
+                      <button
+                        className="text-white transition hover:text-red-600"
+                        onClick={() => handleDelete(booking._id)}
+                      >
+                        <TbCalendarX size={26}></TbCalendarX>
+                      </button>
                     </li>
                   );
                 })}
