@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { BsCalendarCheck } from "react-icons/bs";
 import { toast } from "react-toastify";
@@ -19,7 +20,7 @@ const RoomDetails = () => {
   // Handling booking
   const navigate = useNavigate();
 
-  const handleBookNow = () => {
+  const handleBookNow = async () => {
     if (seats === 0) {
       toast.error("Sorry no seats available", {
         position: "top-right",
@@ -31,10 +32,16 @@ const RoomDetails = () => {
         progress: undefined,
         theme: "colored",
       });
-    }
-    else{
-        // go to checkout page
-        navigate(`/rooms/checkout/${_id}`)
+    } else {
+      try {
+        // Making a POST request to update the available seats
+        await axios.put(`http://localhost:5000/rooms/checkout/${_id}`);
+        // Navigate to the checkout page after successful booking
+        navigate(`/rooms/checkout/${_id}`);
+      } catch (error) {
+        console.error("Booking failed:", error);
+        toast.error("Booking failed. Please try again later.");
+      }
     }
   };
 
@@ -126,7 +133,6 @@ const RoomDetails = () => {
             <button
               onClick={handleBookNow}
               className="group relative inline-flex items-center overflow-hidden rounded bg-accent px-8 py-3 text-white focus:outline-none focus:ring active:bg-[#00a8a9] mt-4"
-              href="/download"
             >
               <span className="absolute -end-full transition-all group-hover:end-4">
                 <BsCalendarCheck></BsCalendarCheck>
