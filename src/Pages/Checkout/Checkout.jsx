@@ -16,7 +16,7 @@ const Checkout = () => {
             </div>
             {/* User info */}
             <div className="lg:col-span-3 ">
-              <UserInfo></UserInfo>
+              <UserInfo room={room}></UserInfo>
             </div>
           </div>
         </div>
