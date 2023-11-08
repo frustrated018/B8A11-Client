@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const UserInfo = ({room}) => {
 
   // Handling booking
-  const { pricePerNight, img } = room;
+  const { pricePerNight, img, roomType, offer, roomNumber, location } = room;
   const {user} = useContext(AuthContext)
 
   const handleBook = (event) => {
@@ -19,9 +19,13 @@ const UserInfo = ({room}) => {
     const date = form.date.value;
 
     const order = {
+      roomType,
+      pricePerNight,
+      offer,
+      roomNumber,
+      location,
       name,
       email,
-      pricePerNight,
       img,
       date,
       phone,
