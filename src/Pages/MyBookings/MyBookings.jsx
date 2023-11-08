@@ -3,19 +3,26 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { TbCalendarX, TbCalendarRepeat } from "react-icons/tb";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
+  const url = `http://localhost:5000/bookings?email=${user.email}`
 
   // Fetching data
   useEffect(() => {
-    fetch(`http://localhost:5000/bookings?email=${user.email}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setBookings(data);
-      });
-  }, [user]);
+    axios.get(url, {withCredentials:true})
+    .then(res =>{
+      console.log(res.data);
+      setBookings(res.data)
+    })
+    // fetch(`http://localhost:5000/bookings?email=${user.email}`)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setBookings(data);
+    //   });
+  }, [url]);
 
   //Deleting Bookings
   const handleDelete = (_id, bookedDate) => {

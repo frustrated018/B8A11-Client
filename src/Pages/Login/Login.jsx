@@ -4,10 +4,11 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
-  const location = useLocation()
-  const navigate = useNavigate()
+  const location = useLocation();
+  const navigate = useNavigate();
   const { signIn } = useContext(AuthContext);
   // handleing Login
   const handleSignIn = (event) => {
@@ -15,15 +16,24 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
 
     signIn(email, password)
       .then((result) => {
-        const user = result.user;
-        console.log(user);
-        if (user) {
+        const loggedInUser = result.user;
+        const user = { email };
+        // Generate Access token
+        axios
+          .post("http://localhost:5000/jwt", user, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.success) {
+              navigate(location?.state ? location.state : "/");
+            }
+          });
+
+        if (loggedInUser) {
           // Displaying success message
-          toast.success(`Hi ${user.displayName}! Welcome Back!!`, {
+          toast.success(`Hi ${loggedInUser.displayName}! Welcome Back!!`, {
             position: "top-center",
             autoClose: 3000,
             hideProgressBar: false,
@@ -33,7 +43,7 @@ const Login = () => {
             progress: undefined,
             theme: "colored",
           });
-          navigate(location?.state ? location.state : "/")
+          form.reset();
         }
       })
       .catch((err) => {
