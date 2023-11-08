@@ -1,6 +1,7 @@
 import About from "../../SharedComponents/About/About";
 import Banner from "../../SharedComponents/Banner/Banner";
 import Featured from "../../SharedComponents/Featured/Featured";
+import Footer from "../../SharedComponents/Footer/Footer";
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
       <Banner></Banner>
       <About></About>
       <Featured></Featured>
+      <Footer></Footer>
     </div>
   );
 };
