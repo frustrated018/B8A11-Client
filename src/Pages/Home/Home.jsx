@@ -1,5 +1,6 @@
 import About from "../../SharedComponents/About/About";
 import About2 from "../../SharedComponents/About2/About2";
+import Amenities from "../../SharedComponents/Amenities/Amenities";
 import Banner from "../../SharedComponents/Banner/Banner";
 import Faq from "../../SharedComponents/Faq/Faq";
 import Featured from "../../SharedComponents/Featured/Featured";
@@ -16,6 +17,7 @@ const Home = () => {
         <About2></About2>
       </div>
       <Featured></Featured>
+      <Amenities></Amenities>
       <Faq></Faq>
       <Footer></Footer>
     </div>
