@@ -14,13 +14,11 @@ const MyBookings = () => {
       .then((res) => res.json())
       .then((data) => {
         setBookings(data);
-        console.log(data);
       });
   }, [user]);
 
   //Deleting Bookings
   const handleDelete = (_id) => {
-    console.log(_id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -39,7 +37,7 @@ const MyBookings = () => {
           .then((data) => {
             console.log(data);
             if (data.deletedCount > 0) {
-              toast.success('Your booking has been Cancelled', {
+              toast.success("Your booking has been Cancelled", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -48,7 +46,7 @@ const MyBookings = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "colored",
-                });
+              });
               const remaining = bookings.filter(
                 (x) => x._id !== _id // used x insted of booking because we already mapped bookings once
               );
@@ -60,9 +58,67 @@ const MyBookings = () => {
     });
   };
 
-
   // Updating booking
-
+  const handleUpdate = (_id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#2FFF00",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Update it!",
+      cancelButtonText: "No, Don't!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        (async () => {
+          const { value: newDate } = await Swal.fire({
+            title: "select departure date",
+            input: "date",
+            didOpen: () => {
+              const today = new Date().toISOString();
+              Swal.getInput().min = today.split("T")[0];
+            },
+          });
+          if (newDate) {
+            if (newDate) {
+              // Making a PUT request to update the date in the db
+              fetch(`http://localhost:5000/bookings/${_id}`, {
+                method: "PUT",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ newDate }),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  console.log(data);
+                  if (data.modifiedCount > 0) {
+                    toast.info("Booking date has been updated", {
+                      position: "top-right",
+                      autoClose: 5000,
+                      hideProgressBar: false,
+                      closeOnClick: true,
+                      pauseOnHover: true,
+                      draggable: true,
+                      progress: undefined,
+                      theme: "colored",
+                    });
+                    // Updating the date in the ui
+                    const updatedBookings = bookings.map((booking) =>
+                      booking._id === _id
+                        ? { ...booking, date: newDate }
+                        : booking
+                    );
+                    setBookings(updatedBookings);
+                  }
+                });
+            }
+          }
+        })();
+      }
+    });
+  };
 
   return (
     <>
@@ -81,7 +137,6 @@ const MyBookings = () => {
             <div className="mt-8 border-2 border-accent bg-primary p-4 rounded-lg ">
               <ul className="space-y-4">
                 {bookings.map((booking) => {
-                  console.log(booking);
                   return (
                     <li className="flex items-center gap-4" key={booking._id}>
                       <img
@@ -117,7 +172,7 @@ const MyBookings = () => {
                         {/* Update button */}
                         <button
                           className="text-white transition hover:text-blue-600"
-                          // onClick={() => handleDelete(booking._id)}
+                          onClick={() => handleUpdate(booking._id)}
                         >
                           <TbCalendarRepeat size={26}></TbCalendarRepeat>
                         </button>
