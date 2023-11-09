@@ -3,6 +3,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { BsCalendarCheck } from "react-icons/bs";
 import { toast } from "react-toastify";
 import Offer from "../../SharedComponents/Offer/Offer";
+import Reviews from "../../SharedComponents/Reviews/Reviews";
 
 const RoomDetails = () => {
   const room = useLoaderData();
@@ -16,7 +17,7 @@ const RoomDetails = () => {
     offer,
     seats,
     amenities,
-    // roomId
+    roomId
   } = room;
 
   // Handling booking
@@ -151,8 +152,8 @@ const RoomDetails = () => {
         </article>
       </div>
       {/* Reviews */}
-      <div>
-            
+      <div className="my-10 rounded-lg">
+           <Reviews roomId={roomId}></Reviews> 
       </div>
     </>
   );
