@@ -6,10 +6,9 @@ import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const SignUp = () => {
-  const location = useLocation()
-  const navigate = useNavigate()
+  const location = useLocation();
+  const navigate = useNavigate();
   const { createUser, signInWithGoogle } = useContext(AuthContext);
   // handleing signup
   const handleSignUp = (event) => {
@@ -18,6 +17,7 @@ const SignUp = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    const img = form.img.value;
     console.log(name, email, password);
 
     createUser(email, password)
@@ -27,7 +27,7 @@ const SignUp = () => {
         if (user) {
           // Updating users diplayName
 
-          updateProfile(user, { displayName: name })
+          updateProfile(user, { displayName: name, photoURL: img })
             .then(() => {
               // Displaying success message
               toast.success(`Hi ${user.displayName}! Welcome to our site!!`, {
@@ -40,7 +40,7 @@ const SignUp = () => {
                 progress: undefined,
                 theme: "colored",
               });
-              navigate(location?.state ? location.state : "/")
+              navigate(location?.state ? location.state : "/");
             })
             .catch((error) => {
               console.log(error);
@@ -109,16 +109,19 @@ const SignUp = () => {
               <form onSubmit={handleSignUp}>
                 <div className="flex -mx-3">
                   <div className="w-full px-3 mb-5">
-                    <label htmlFor="" className="text-xs font-semibold px-1">
+                    <label
+                      htmlFor="name"
+                      className="text-xs font-semibold px-1"
+                    >
                       Name
                     </label>
                     <div className="flex">
                       <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                         <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
                       </div>
-                      {/* input field */}
                       <input
                         type="text"
+                        id="name"
                         name="name"
                         className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-secondary"
                         placeholder="Jhon Doe"
@@ -129,16 +132,39 @@ const SignUp = () => {
                 </div>
                 <div className="flex -mx-3">
                   <div className="w-full px-3 mb-5">
-                    <label htmlFor="" className="text-xs font-semibold px-1">
+                    <label htmlFor="img" className="text-xs font-semibold px-1">
+                      Image
+                    </label>
+                    <div className="flex">
+                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                        <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
+                      </div>
+                      <input
+                        type="url"
+                        id="img"
+                        name="img"
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-secondary"
+                        placeholder="Please add a Photo URL"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex -mx-3">
+                  <div className="w-full px-3 mb-5">
+                    <label
+                      htmlFor="email"
+                      className="text-xs font-semibold px-1"
+                    >
                       Email
                     </label>
                     <div className="flex">
                       <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                         <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
                       </div>
-                      {/* input field */}
                       <input
                         type="email"
+                        id="email"
                         name="email"
                         className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-secondary"
                         placeholder="example@email.com"
@@ -149,16 +175,19 @@ const SignUp = () => {
                 </div>
                 <div className="flex -mx-3">
                   <div className="w-full px-3 mb-12">
-                    <label htmlFor="" className="text-xs font-semibold px-1">
+                    <label
+                      htmlFor="password"
+                      className="text-xs font-semibold px-1"
+                    >
                       Password
                     </label>
                     <div className="flex">
                       <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                         <i className="mdi mdi-lock-outline text-gray-400 text-lg"></i>
                       </div>
-                      {/* input Field */}
                       <input
                         type="password"
+                        id="password"
                         name="password"
                         className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-secondary"
                         placeholder="************"
@@ -169,7 +198,10 @@ const SignUp = () => {
                 </div>
                 <div className="flex -mx-3">
                   <div className="w-full px-3">
-                    <button type="submit" className="block w-full max-w-xs mx-auto bg-secondary hover:bg-accent focus:bg-accent text-white rounded-lg px-3 py-3 font-bold text-[20px]">
+                    <button
+                      type="submit"
+                      className="block w-full max-w-xs mx-auto bg-secondary hover:bg-accent focus:bg-accent text-white rounded-lg px-3 py-3 font-bold text-[20px]"
+                    >
                       Sign Up
                     </button>
                   </div>
@@ -177,14 +209,17 @@ const SignUp = () => {
 
                 <hr className="my-4 border-[#0E0801] w-full" />
 
-                <button onClick={handleGoogleSignUp} className="block w-full max-w-xs mx-auto bg-secondary hover:bg-accent focus:bg-accent text-white rounded-lg px-3 py-3 font-bold text-[20px]">
+                <button
+                  onClick={handleGoogleSignUp}
+                  className="block w-full max-w-xs mx-auto bg-secondary hover:bg-accent focus:bg-accent text-white rounded-lg px-3 py-3 font-bold text-[20px]"
+                >
                   <div className="flex items-center justify-center">
-                    <FcGoogle size={25}></FcGoogle>
+                    <FcGoogle size={25} />
                     <span className="ml-4">Log in with Google</span>
                   </div>
                 </button>
               </form>
-              {/* Redirecting */}
+
               <p className="text-right text-base text-neutral mt-3">
                 Already have an Account?
                 <Link

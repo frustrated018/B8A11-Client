@@ -124,7 +124,15 @@ const Navbar = () => {
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
-                  <img src="https://i.ibb.co/0VZsNLh/alexander-hipp-i-EEBWg-Y-6l-A-unsplash.jpg" />
+                  {user ? (
+                    <img src={user.photoURL? user.photoURL: "https://i.ibb.co/Yyn8B5K/512x512.png" } />
+                  ) : (
+                    <img
+                      src={
+                        "https://i.ibb.co/Yyn8B5K/512x512.png"
+                      }
+                    />
+                  )}
                 </div>
               </label>
               {user && (
