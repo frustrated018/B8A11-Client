@@ -15,7 +15,8 @@ const RoomDetails = () => {
     pricePerNight,
     offer,
     seats,
-    reviews,
+    amenities,
+    // roomId
   } = room;
 
   // Handling booking
@@ -118,20 +119,17 @@ const RoomDetails = () => {
                   </dd>
                 </div>
 
-                {/* Display Reviews */}
+                {/* Amenities section  */}
                 <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-semibold text-white text-base">
-                    Reviews:
+                  Amenities:
                   </dt>
                   <dd className="text-neutral sm:col-span-2 text-base">
-                    {reviews.map((review, index) => (
-                      <div key={index}>
-                        <p>Username: {review.username}</p>
-                        <p>Rating: {review.rating}/5</p>
-                        <p>Comment: {review.comment}</p>
-                        <p>Timestamp: {review.timestamp}</p>
-                      </div>
-                    ))}
+                    <ul>
+                      {amenities.map((amenity, index) => (
+                        <li key={index}>{amenity}</li>
+                      ))}
+                    </ul>
                   </dd>
                 </div>
               </dl>
@@ -151,6 +149,10 @@ const RoomDetails = () => {
             </button>
           </div>
         </article>
+      </div>
+      {/* Reviews */}
+      <div>
+            
       </div>
     </>
   );
