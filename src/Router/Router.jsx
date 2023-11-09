@@ -10,6 +10,7 @@ import axios from "axios";
 import RoomDetails from "../Pages/RoomDetails/RoomDetails";
 import Checkout from "../Pages/Checkout/Checkout";
 import Error from "../Pages/Error/Error";
+import AddReview from "../Pages/AddReview/AddReview";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/addreview",
+        element:<AddReview></AddReview>,
       },
       {
         path: "/signup",

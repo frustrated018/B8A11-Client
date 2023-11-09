@@ -9,6 +9,7 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "../Firebase/firebase.cofig";
+// import axios from "axios";
 const googleProvider = new GoogleAuthProvider();
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -24,6 +25,25 @@ const AuthProvider = ({ children }) => {
   };
 
   //   Checking if user Already exists
+
+    // JWT Related Code
+  //   if (currentUser) {
+  //     axios.post('http://localhost:5000/jwt', loggedUser, { withCredentials: true })
+  //         .then(res => {
+  //             if (res.data) {
+  //               console.log(res.data);
+  //             }
+  //         })
+  // } else {
+  //     axios.post('http://localhost:5000/logout', loggedUser, { withCredentials: true })
+  //         .then(res => {
+  //             if (res.data) {
+  //               res.data
+  //             }
+  //         })
+  // }
+  
+
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {

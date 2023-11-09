@@ -4,7 +4,7 @@ import { BsCalendarCheck } from "react-icons/bs";
 import { toast } from "react-toastify";
 import Offer from "../../SharedComponents/Offer/Offer";
 import Reviews from "../../SharedComponents/Reviews/Reviews";
-import AddReview from "../AddReview/AddReview";
+
 
 const RoomDetails = () => {
   const room = useLoaderData();
@@ -24,6 +24,8 @@ const RoomDetails = () => {
   // Handling booking
   const navigate = useNavigate();
 
+  
+
   const handleBookNow = async () => {
     if (seats === 0) {
       toast.error("Sorry no seats available", {
@@ -39,7 +41,7 @@ const RoomDetails = () => {
     } else {
       try {
         // Making a POST request to update the available seats
-        await axios.put(`http://localhost:5000/rooms/checkout/${_id}`);
+        await axios.put(`http://localhost:5000/rooms/checkout/${_id}`)
         // Navigate to the checkout page after successful booking
         navigate(`/rooms/checkout/${_id}`);
       } catch (error) {
@@ -48,6 +50,7 @@ const RoomDetails = () => {
       }
     }
   };
+
 
   return (
     <>
@@ -155,7 +158,6 @@ const RoomDetails = () => {
       {/* Reviews */}
       <div className="my-10 rounded-lg">
         <Reviews roomId={roomId}></Reviews>
-        <AddReview roomId={roomId}></AddReview>
       </div>
     </>
   );

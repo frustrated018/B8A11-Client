@@ -1,27 +1,25 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { TbCalendarX, TbCalendarRepeat } from "react-icons/tb";
+import { MdOutlineRateReview } from "react-icons/md";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
-  const url = `http://localhost:5000/bookings?email=${user.email}`
+  const url = `http://localhost:5000/bookings?email=${user.email}`;
 
   // Fetching data
   useEffect(() => {
-    axios.get(url)//{withCredentials:true}
-    .then(res =>{
-      console.log(res.data);
-      setBookings(res.data)
-    })
-    // fetch(`http://localhost:5000/bookings?email=${user.email}`)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setBookings(data);
-    //   });
+    axios
+      .get(url) //{withCredentials:true}
+      .then((res) => {
+        console.log(res.data);
+        setBookings(res.data);
+      });
   }, [url]);
 
   //Deleting Bookings
@@ -160,7 +158,7 @@ const MyBookings = () => {
                 Your Bookings
               </h1>
               <p className="text-base font-bold text-neutral opacity-50 sm:text-xl">
-                You have two buttons to Update or Cancel your booking
+                You have 3 buttons to Update or Cancel your booking & Add Review
               </p>
             </header>
 
@@ -199,6 +197,12 @@ const MyBookings = () => {
                       </div>
 
                       <div className="flex flex-1 items-center justify-end gap-2">
+                        {/* Add review button */}
+                        <Link to={"/addreview"}>
+                          <button className="text-white transition hover:text-green-600 mt-3">
+                            <MdOutlineRateReview size={26}></MdOutlineRateReview>
+                          </button>
+                        </Link>
                         {/* Update button */}
                         <button
                           className="text-white transition hover:text-blue-600"

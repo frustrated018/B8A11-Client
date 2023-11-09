@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const AddReview = ({ roomId }) => {
   console.log(roomId);
@@ -20,18 +21,37 @@ const AddReview = ({ roomId }) => {
     console.log(formattedDate);
 
     const newReview = { userName, review, rating, timestamp: formattedDate, idx:roomId };
-    console.log(newReview);
 
     // Making a POST request
     axios
       .post(`http://localhost:5000/reviews`, newReview)
       .then((response) => {
         // Handle success
-        console.log("Response:", response.data);
+        if (response.data.insertedId) {
+          toast.success('Review Added Successfully!', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            });
+        }
       })
       .catch((error) => {
         // Handle error
-        console.error("Error:", error);
+        toast.success(`${error.message}`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
       });
   };
 

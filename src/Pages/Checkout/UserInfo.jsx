@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const UserInfo = ({room}) => {
 
   // Handling booking
-  const { pricePerNight, img, roomType, offer, roomNumber, location } = room;
+  const { pricePerNight, img, roomType, offer, roomNumber, location, roomId } = room;
   const {user} = useContext(AuthContext)
 
   const handleBook = (event) => {
@@ -29,6 +29,7 @@ const UserInfo = ({room}) => {
       img,
       date,
       phone,
+      roomId
     };
 
     fetch("http://localhost:5000/bookings", {
