@@ -3,12 +3,11 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
+// import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
+  // const location = useLocation();
+  // const navigate = useNavigate();
   const { signIn } = useContext(AuthContext);
   // handleing Login
   const handleSignIn = (event) => {
@@ -20,16 +19,6 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const loggedInUser = result.user;
-        const user = { email };
-        // Generate Access token
-        axios
-          .post("http://localhost:5000/jwt", user, { withCredentials: true })
-          .then((res) => {
-            console.log(res.data);
-            if (res.data.success) {
-              navigate(location?.state ? location.state : "/");
-            }
-          });
 
         if (loggedInUser) {
           // Displaying success message
@@ -43,6 +32,7 @@ const Login = () => {
             progress: undefined,
             theme: "colored",
           });
+          // navigate(location?.state ? location.state : "/");
           form.reset();
         }
       })
