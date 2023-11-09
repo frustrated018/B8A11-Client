@@ -3,12 +3,12 @@ import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-// import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  // const location = useLocation();
-  // const navigate = useNavigate();
-  const { signIn } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { signIn, signInWithGoogle } = useContext(AuthContext);
   // handleing Login
   const handleSignIn = (event) => {
     event.preventDefault();
@@ -32,7 +32,7 @@ const Login = () => {
             progress: undefined,
             theme: "colored",
           });
-          // navigate(location?.state ? location.state : "/");
+          navigate(location?.state ? location.state : "/");
           form.reset();
         }
       })
@@ -50,6 +50,18 @@ const Login = () => {
         });
       });
   };
+
+  //Login with google handler
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((res) => {
+        console.log(res);
+        //success toast
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => console.error(error));
+  };
+
   return (
     <>
       <div className="min-w-screen min-h-screen bg-base-100 flex items-center justify-center px-5 py-5">
@@ -113,7 +125,7 @@ const Login = () => {
                 </div>
                 <div className="flex -mx-3">
                   <div className="w-full px-3">
-                    <button className="block w-full max-w-xs mx-auto bg-secondary hover:bg-accent focus:bg-accent text-white rounded-lg px-3 py-3 font-bold text-[20px]">
+                    <button type="submit" className="block w-full max-w-xs mx-auto bg-secondary hover:bg-accent focus:bg-accent text-white rounded-lg px-3 py-3 font-bold text-[20px]">
                       Login
                     </button>
                   </div>
@@ -121,7 +133,7 @@ const Login = () => {
 
                 <hr className="my-4 border-[#0E0801] w-full" />
 
-                <button className="block w-full max-w-xs mx-auto bg-secondary hover:bg-accent focus:bg-accent text-white rounded-lg px-3 py-3 font-bold text-[20px]">
+                <button onClick={handleGoogleSignIn} className="block w-full max-w-xs mx-auto bg-secondary hover:bg-accent focus:bg-accent text-white rounded-lg px-3 py-3 font-bold text-[20px]">
                   <div className="flex items-center justify-center">
                     <FcGoogle size={25}></FcGoogle>
                     <span className="ml-4">Log in with Google</span>

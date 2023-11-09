@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 const SignUp = () => {
   const location = useLocation()
   const navigate = useNavigate()
-  const { createUser } = useContext(AuthContext);
+  const { createUser, signInWithGoogle } = useContext(AuthContext);
   // handleing signup
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -72,6 +72,19 @@ const SignUp = () => {
       });
   };
 
+  // Signing up with google
+  const handleGoogleSignUp = () => {
+    signInWithGoogle()
+      .then((res) => {
+        console.log(res);
+        //Success toast
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <>
       <div className="min-w-screen min-h-screen bg-base-100 flex items-center justify-center px-5 py-5">
@@ -91,7 +104,7 @@ const SignUp = () => {
             <div className="w-full md:w-1/2 py-10 px-5 md:px-10">
               <div className="text-center mb-10">
                 <h1 className="font-bold text-4xl text-gray-900">Sign Up!!</h1>
-                <p>Enter the following information to register</p>
+                <div>Enter the following information to register</div>
               </div>
               <form onSubmit={handleSignUp}>
                 <div className="flex -mx-3">
@@ -156,7 +169,7 @@ const SignUp = () => {
                 </div>
                 <div className="flex -mx-3">
                   <div className="w-full px-3">
-                    <button className="block w-full max-w-xs mx-auto bg-secondary hover:bg-accent focus:bg-accent text-white rounded-lg px-3 py-3 font-bold text-[20px]">
+                    <button type="submit" className="block w-full max-w-xs mx-auto bg-secondary hover:bg-accent focus:bg-accent text-white rounded-lg px-3 py-3 font-bold text-[20px]">
                       Sign Up
                     </button>
                   </div>
@@ -164,7 +177,7 @@ const SignUp = () => {
 
                 <hr className="my-4 border-[#0E0801] w-full" />
 
-                <button className="block w-full max-w-xs mx-auto bg-secondary hover:bg-accent focus:bg-accent text-white rounded-lg px-3 py-3 font-bold text-[20px]">
+                <button onClick={handleGoogleSignUp} className="block w-full max-w-xs mx-auto bg-secondary hover:bg-accent focus:bg-accent text-white rounded-lg px-3 py-3 font-bold text-[20px]">
                   <div className="flex items-center justify-center">
                     <FcGoogle size={25}></FcGoogle>
                     <span className="ml-4">Log in with Google</span>
