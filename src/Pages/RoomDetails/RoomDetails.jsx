@@ -4,6 +4,7 @@ import { BsCalendarCheck } from "react-icons/bs";
 import { toast } from "react-toastify";
 import Offer from "../../SharedComponents/Offer/Offer";
 import Reviews from "../../SharedComponents/Reviews/Reviews";
+import AddReview from "../AddReview/AddReview";
 
 const RoomDetails = () => {
   const room = useLoaderData();
@@ -17,7 +18,7 @@ const RoomDetails = () => {
     offer,
     seats,
     amenities,
-    roomId
+    roomId,
   } = room;
 
   // Handling booking
@@ -123,7 +124,7 @@ const RoomDetails = () => {
                 {/* Amenities section  */}
                 <div className="grid grid-cols-1 gap-1 p-3 sm:grid-cols-3 sm:gap-4">
                   <dt className="font-semibold text-white text-base">
-                  Amenities:
+                    Amenities:
                   </dt>
                   <dd className="text-neutral sm:col-span-2 text-base">
                     <ul>
@@ -153,7 +154,8 @@ const RoomDetails = () => {
       </div>
       {/* Reviews */}
       <div className="my-10 rounded-lg">
-           <Reviews roomId={roomId}></Reviews> 
+        <Reviews roomId={roomId}></Reviews>
+        <AddReview roomId={roomId}></AddReview>
       </div>
     </>
   );

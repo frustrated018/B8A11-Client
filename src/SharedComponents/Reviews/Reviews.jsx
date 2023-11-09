@@ -15,7 +15,6 @@ import { Pagination, Navigation } from "swiper/modules";
 import ReviewCard from "./ReviewCard/ReviewCard";
 
 const Reviews = ({ roomId }) => {
-  console.log(roomId);
 
   const [reviews, setReviews] = useState([]);
 

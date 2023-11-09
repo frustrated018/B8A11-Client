@@ -1,5 +1,4 @@
 const ReviewCard = ({ reviewX }) => {
-  console.log(reviewX);
   const { userName, review, rating, timestamp } = reviewX;
   return (
     <>
