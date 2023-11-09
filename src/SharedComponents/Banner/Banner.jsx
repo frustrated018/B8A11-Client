@@ -13,11 +13,11 @@ const Banner = () => {
                 Tradition
               </strong>
             </h1>
-            <p className="mt-4 text-white max-w-lg sm:text-xl/relaxed">
-              <p className="mt-4 text-white max-w-lg sm:text-xl/relaxed">
+            <div className="mt-4 text-white max-w-lg sm:text-xl/relaxed">
+              <div className="mt-4 text-white max-w-lg sm:text-xl/relaxed">
               Yachiyo, a timeless ryokan since 1920, harmonizes modern luxury with ancient traditions, offering serenity and grace in every visit.
-              </p>
-            </p>
+              </div>
+            </div>
             <div className="mt-8 flex flex-wrap gap-4 text-center">
               <button className="block w-full rounded bg-secondary px-12 py-3 text-base font-medium text-white shadow sm:w-auto">
                 Get Started

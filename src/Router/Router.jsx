@@ -26,7 +26,7 @@ const router = createBrowserRouter([
         path: "/rooms",
         element: <Rooms></Rooms>,
         loader: () =>
-          axios.get("http://localhost:5000/rooms").then((res) => res.data),
+          axios.get("https://yachiyo-server.vercel.app/rooms").then((res) => res.data),
       },
       {
         path: "/mybookings",
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         path: "/rooms/checkout/:id",
         element: <Checkout></Checkout>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/rooms/checkout/${params.id}`),
+          fetch(`https://yachiyo-server.vercel.app/rooms/checkout/${params.id}`),
       },
       {
         path: "/rooms/details/:id",
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/rooms/details/${params.id}`),
+          fetch(`https://yachiyo-server.vercel.app/rooms/details/${params.id}`),
       },
     ],
   },

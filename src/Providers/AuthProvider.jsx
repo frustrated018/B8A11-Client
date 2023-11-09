@@ -9,6 +9,7 @@ import {
   signOut,
 } from "firebase/auth";
 import app from "../Firebase/firebase.cofig";
+import axios from "axios";
 // import axios from "axios";
 const googleProvider = new GoogleAuthProvider();
 export const AuthContext = createContext();
@@ -24,38 +25,37 @@ const AuthProvider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  //   Checking if user Already exists
-
-    // JWT Related Code
-  //   if (currentUser) {
-  //     axios.post('http://localhost:5000/jwt', loggedUser, { withCredentials: true })
-  //         .then(res => {
-  //             if (res.data) {
-  //               console.log(res.data);
-  //             }
-  //         })
-  // } else {
-  //     axios.post('http://localhost:5000/logout', loggedUser, { withCredentials: true })
-  //         .then(res => {
-  //             if (res.data) {
-  //               res.data
-  //             }
-  //         })
-  // }
-  
-
-
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = { email: userEmail };
       setUser(currentUser);
-      console.log(currentUser);
+      console.log("current user", currentUser);
       setLoading(false);
+      // if user exists then issue a token
+      if (currentUser) {
+        axios
+          .post("https://yachiyo-server.vercel.app/jwt", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log("token response", res.data);
+          });
+      } 
+      else {
+        axios
+          .post("https://yachiyo-server.vercel.app/logout", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+          });
+      }
     });
-
     return () => {
-      unSubscribe();
+      return unsubscribe();
     };
-  }, []);
+  }, [user?.email]);
 
   //Google Login
 

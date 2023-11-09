@@ -20,7 +20,7 @@ const Reviews = ({ roomId }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/reviews?roomId=${roomId}`)
+      .get(`https://yachiyo-server.vercel.app/reviews?roomId=${roomId}`)
       .then((res) => {
         setReviews(res.data);
       })

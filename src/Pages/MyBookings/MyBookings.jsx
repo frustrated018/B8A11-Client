@@ -4,23 +4,26 @@ import { TbCalendarX, TbCalendarRepeat } from "react-icons/tb";
 import { MdOutlineRateReview } from "react-icons/md";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
-import axios from "axios";
+// import axios from "axios";
 import { Link } from "react-router-dom";
+import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const MyBookings = () => {
   const { user } = useContext(AuthContext);
   const [bookings, setBookings] = useState([]);
-  const url = `http://localhost:5000/bookings?email=${user.email}`;
+  const axiosSecure = UseAxiosSecure();
 
   // Fetching data
   useEffect(() => {
-    axios
+    const url = `https://yachiyo-server.vercel.app/bookings?email=${user?.email}`;
+
+    axiosSecure
       .get(url) //{withCredentials:true}
       .then((res) => {
         console.log(res.data);
         setBookings(res.data);
       });
-  }, [url]);
+  }, [user.email, axiosSecure]);
 
   //Deleting Bookings
   const handleDelete = (_id, bookedDate) => {
@@ -42,7 +45,7 @@ const MyBookings = () => {
         confirmButtonText: "Yes, Cancel!",
       }).then((result) => {
         if (result.isConfirmed) {
-          fetch(`http://localhost:5000/bookings/${_id}`, {
+          fetch(`https://yachiyo-server.vercel.app/bookings/${_id}`, {
             method: "DELETE",
           })
             .then((res) => res.json())
@@ -111,7 +114,7 @@ const MyBookings = () => {
           if (newDate) {
             if (newDate) {
               // Making a PUT request to update the date in the db
-              fetch(`http://localhost:5000/bookings/${_id}`, {
+              fetch(`https://yachiyo-server.vercel.app/bookings/${_id}`, {
                 method: "PUT",
                 headers: {
                   "Content-Type": "application/json",
@@ -200,7 +203,9 @@ const MyBookings = () => {
                         {/* Add review button */}
                         <Link to={"/addreview"}>
                           <button className="text-white transition hover:text-green-600 mt-3">
-                            <MdOutlineRateReview size={26}></MdOutlineRateReview>
+                            <MdOutlineRateReview
+                              size={26}
+                            ></MdOutlineRateReview>
                           </button>
                         </Link>
                         {/* Update button */}

@@ -25,7 +25,7 @@ const AddReview = ({ roomId }) => {
 
     // Making a POST request
     axios
-      .post(`http://localhost:5000/reviews`, newReview)
+      .post(`https://yachiyo-server.vercel.app/reviews`, newReview)
       .then((response) => {
         // Handle success
         if (response.data.insertedId) {

@@ -41,7 +41,7 @@ const RoomDetails = () => {
     } else {
       try {
         // Making a POST request to update the available seats
-        await axios.put(`http://localhost:5000/rooms/checkout/${_id}`)
+        await axios.put(`https://yachiyo-server.vercel.app/rooms/checkout/${_id}`)
         // Navigate to the checkout page after successful booking
         navigate(`/rooms/checkout/${_id}`);
       } catch (error) {
