@@ -2,7 +2,7 @@ const Banner = () => {
   return (
     <>
       <section className="relative bg-[url(https://source.unsplash.com/random/500x500/?japan,hotel,ryokan)] bg-cover bg-center bg-no-repeat">
-        <div className="absolute inset-0 bg-neutral opacity-50 rounded-lg"></div>
+        <div className="absolute inset-0 bg-neutral opacity-50"></div>
 
         <div className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8">
           <div className="max-w-xl text-left">
