@@ -88,6 +88,20 @@ const Navbar = () => {
         My Bookings
       </NavLink>
       <NavLink
+        to="/gallery"
+        className={({ isActive, isPending }) =>
+          `px-4 py-2 rounded-md text-center font-semibold ${
+            isPending
+              ? "bg-primary text-neutral cursor-not-allowed"
+              : isActive
+              ? "bg-primary text-base-100"
+              : "bg-transparent text-[#0E0801] hover:bg-secondary hover:text-neutral"
+          }`
+        }
+      >
+        Gallery
+      </NavLink>
+      <NavLink
         to="/login"
         className={({ isActive, isPending }) =>
           `px-4 py-2 rounded-md text-center font-semibold ${

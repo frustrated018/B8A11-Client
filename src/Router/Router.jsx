@@ -11,6 +11,7 @@ import RoomDetails from "../Pages/RoomDetails/RoomDetails";
 import Checkout from "../Pages/Checkout/Checkout";
 import Error from "../Pages/Error/Error";
 import AddReview from "../Pages/AddReview/AddReview";
+import Gallery from "../Pages/Gallery/Gallery";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "/addreview",
         element:<AddReview></AddReview>,
+      },
+      {
+        path: "/gallery",
+        element:<Gallery></Gallery>,
       },
       {
         path: "/signup",
