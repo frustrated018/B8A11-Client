@@ -2,6 +2,7 @@ import axios from "axios";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { BsCalendarCheck } from "react-icons/bs";
 import { toast } from "react-toastify";
+import Offer from "../../SharedComponents/Offer/Offer";
 
 const RoomDetails = () => {
   const room = useLoaderData();
@@ -47,7 +48,13 @@ const RoomDetails = () => {
 
   return (
     <>
+      {/* offer Card */}
+      <div className="px-10 lg:px-20 mt-5">
+        <Offer offer={offer}></Offer>
+      </div>
+
       <div className="flex justify-center items-center lg:py-20 md:py-10 py-5">
+        {/* Details Card */}
         <article className="overflow-hidden rounded-lg border border-neutral bg-primary shadow-sm w-[90%] h-[90%]">
           <img
             alt="Office"
