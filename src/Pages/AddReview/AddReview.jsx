@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddReview = ({ roomId }) => {
-  console.log(roomId);
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   // Handle adding reviews
   const handleAddReview = (event) => {
@@ -38,6 +39,7 @@ const AddReview = ({ roomId }) => {
             progress: undefined,
             theme: "colored",
             });
+            navigate('/')
         }
       })
       .catch((error) => {
