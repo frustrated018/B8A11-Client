@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { toast } from "react-toastify";
@@ -6,6 +6,24 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+
+  // Theme related function
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "myLight"
+  );
+  const handleToggle = (e) => {
+    if (e.target.checked) {
+      setTheme("myDark");
+    } else {
+      setTheme("myLight");
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
 
   // handling Logout
   const handleLogOut = () => {
@@ -101,7 +119,11 @@ const Navbar = () => {
             <div className="dropdown dropdown-end">
               <label className="swap swap-rotate">
                 {/* this hidden checkbox controls the state */}
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  onChange={handleToggle}
+                  checked={theme === "myLight" ? false : true}
+                />
                 {/* sun icon */}
                 <svg
                   className="swap-on fill-current w-10 h-10"
@@ -125,13 +147,15 @@ const Navbar = () => {
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   {user ? (
-                    <img src={user.photoURL? user.photoURL: "https://i.ibb.co/Yyn8B5K/512x512.png" } />
-                  ) : (
                     <img
                       src={
-                        "https://i.ibb.co/Yyn8B5K/512x512.png"
+                        user.photoURL
+                          ? user.photoURL
+                          : "https://i.ibb.co/Yyn8B5K/512x512.png"
                       }
                     />
+                  ) : (
+                    <img src={"https://i.ibb.co/Yyn8B5K/512x512.png"} />
                   )}
                 </div>
               </label>
