@@ -1,6 +1,7 @@
 import About from "../../SharedComponents/About/About";
 import About2 from "../../SharedComponents/About2/About2";
 import Amenities from "../../SharedComponents/Amenities/Amenities";
+import Awards from "../../SharedComponents/Awards/Awards";
 import Banner from "../../SharedComponents/Banner/Banner";
 import Faq from "../../SharedComponents/Faq/Faq";
 import Featured from "../../SharedComponents/Featured/Featured";
@@ -19,6 +20,7 @@ const Home = () => {
       </div>
       <Featured></Featured>
       <Amenities></Amenities>
+      <Awards></Awards>
       <Faq></Faq>
       <ContactUs />
       <Footer></Footer>
