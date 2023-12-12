@@ -5,13 +5,14 @@ import Banner from "../../SharedComponents/Banner/Banner";
 import Faq from "../../SharedComponents/Faq/Faq";
 import Featured from "../../SharedComponents/Featured/Featured";
 import Footer from "../../SharedComponents/Footer/Footer";
+import ContactUs from "../../SharedComponents/contactUs/contactUs";
 
 const Home = () => {
   return (
     <div>
       <Banner></Banner>
       <div className=" hidden md:block">
-      <About></About>
+        <About></About>
       </div>
       <div className="block md:hidden">
         <About2></About2>
@@ -19,6 +20,7 @@ const Home = () => {
       <Featured></Featured>
       <Amenities></Amenities>
       <Faq></Faq>
+      <ContactUs />
       <Footer></Footer>
     </div>
   );
